@@ -1,0 +1,31 @@
+[2020-10-31 18:49:04
+ INFO]: startup started
+[2020-10-31 18:49:04
+ INFO]: startup build image from .
+Sending build context to Docker daemon  15.87kB
+Step 1/4 : FROM alpine:latest
+ ---> d6e46aa2470d
+Step 2/4 : COPY bin/main.sh /usr/local/
+ ---> Using cache
+ ---> 1f6eba9ebd8d
+Step 3/4 : RUN sed -i 's/http\:\/\/alpine.gliderlabs.com/https\:\/\/alpine.global.ssl.fastly.net/g' /etc/apk/repositories   && apk --no-cache --update add perl
+ ---> Running in 8d3af6d18d15
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/community/x86_64/APKINDEX.tar.gz
+(1/2) Installing libbz2 (1.0.8-r1)
+(2/2) Installing perl (5.30.3-r0)
+Executing busybox-1.31.1-r19.trigger
+OK: 43 MiB in 16 packages
+Removing intermediate container 8d3af6d18d15
+ ---> 48d99eff208f
+Step 4/4 : CMD ["perl", "/usr/local/main.sh"]
+ ---> Running in 509b90fcf784
+Removing intermediate container 509b90fcf784
+ ---> eac3dfb96cb9
+Successfully built eac3dfb96cb9
+Successfully tagged perl-cli-whoami:latest
+[2020-10-31 18:49:04
+ INFO]: startup running image
+[OUTPUT] Hello World from root
+[2020-10-31 18:49:04
+ INFO]: startup ended
